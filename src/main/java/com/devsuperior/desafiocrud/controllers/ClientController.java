@@ -19,13 +19,15 @@ public class ClientController {
     private ClientService service;
 
     @GetMapping(value = "/{id}")
-    public ClientDTO findById(@PathVariable Long id) {
-        return service.findById(id);
+    public ResponseEntity<ClientDTO> findById(@PathVariable Long id) {
+        ClientDTO dto = service.findById(id);
+        return ResponseEntity.ok(dto);
     }
 
     @GetMapping
-    public Page<ClientDTO> findAll(Pageable pageable) {
-        return service.findAll(pageable);
+    public ResponseEntity<Page<ClientDTO>> findAll(Pageable pageable) {
+        Page<ClientDTO> dto = service.findAll(pageable);
+        return ResponseEntity.ok(dto);
     }
 
     @PostMapping
