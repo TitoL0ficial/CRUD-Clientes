@@ -1,16 +1,27 @@
 package com.devsuperior.desafiocrud.dto;
 
 import com.devsuperior.desafiocrud.entities.Client;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
 
 public class ClientDTO {
 
     private Long id;
+
+    @Size(min = 5, max = 40, message = "Nome precisa ter entre 5 a 40 caracteres")
+    @NotBlank(message = "Campo requerido")
     private String name;
+
     private String cpf;
+
     private Double income;
+
+    @PastOrPresent(message = "A data de nascimento nào pode ser uma data futura")
     private LocalDate birthDate;
+
     private Integer children;
 
     public ClientDTO(Long id, String name, String cpf, Double income, LocalDate birthDate, Integer children) {
